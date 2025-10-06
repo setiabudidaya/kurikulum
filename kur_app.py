@@ -85,7 +85,9 @@ try:
         studi_by_kurikulum.columns = ['Lama Tahun', 'Jumlah Program Studi']
         # Sort by 'Lama Tahun' alphabetically
         studi_by_kurikulum = studi_by_kurikulum.sort_values('Lama Tahun')
-        fig_kurikulum = px.bar(studi_by_kurikulum, x='Lama Pemberlakuan', y='Jumlah Program Studi', title='Jumlah Prodi per Lama Pemberlakuan dalam Tahun')
+        fig_kurikulum = px.bar(studi_by_kurikulum, x='Lama Tahun', y='Jumlah Program Studi', title='Jumlah Prodi per Lama Pemberlakuan dalam Tahun',
+                               labels={'Lama Tahun':'Lama Pemberlakuan'})                             
+        
         st.plotly_chart(fig_kurikulum, use_container_width=True)
 
 
@@ -112,4 +114,5 @@ except FileNotFoundError:
     st.error(f"File '{FILE_EXCEL}' tidak ditemukan di folder yang sama. Pastikan file Excel Anda ada di sana.")
 except Exception as e:
     st.error(f"Terjadi kesalahan saat membaca file: {e}. Pastikan file Excel Anda memiliki kolom: 'Nama Program Studi', 'SK Kurikulum', 'Tanggal SK'")
+
 
